@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Search as SearchIcon, X, ArrowRight } from "lucide-react";
 import { insightsData } from "../data/insights";
 import { companiesData } from "../data/companies";
+import { programsData } from "../data/programs";
 import { motion, AnimatePresence } from "motion/react";
 
 const staticPages = [
@@ -10,7 +11,7 @@ const staticPages = [
   { id: "approach", title: "Approach", path: "/approach", type: "Page", desc: "We back founders who go unreasonably deep to get their beginnings right." },
   { id: "platform", title: "Infrastructure & Fields", path: "/platform", type: "Page", desc: "The physical nodes in the global internet of innovation." },
   { id: "routes", title: "The Routes", path: "/routes", type: "Page", desc: "A covenant to restore flow globally across 19 cities." },
-  { id: "fellowship", title: "Fellowship", path: "/fellowship", type: "Page", desc: "Transforming Xcitizens into lifelong ambassadors." },
+  { id: "programs", title: "Programs", path: "/programs", type: "Page", desc: "High-intensity pathways for civilizational architects and founders." },
   { id: "insights", title: "Insights", path: "/insights", type: "Page", desc: "News, dispatches, and perspectives from the frontier of civilizational technology." },
   { id: "ventures", title: "Our Ventures", path: "/ventures", type: "Page", desc: "We back builders tackling civilization-level challenges." },
 ];
@@ -46,11 +47,15 @@ export function SearchModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
       c.name.toLowerCase().includes(q) || c.focus.toLowerCase().includes(q) || c.field.toLowerCase().includes(q)
     ).map(c => ({ id: `venture-${c.id}`, type: "Venture", path: `/ventures/${c.id}`, title: c.name, desc: c.focus }));
     
+    const matchedPrograms = programsData.filter(p => 
+      p.title.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
+    ).map(p => ({ id: `program-${p.id}`, type: "Program", path: `/programs/${p.id}`, title: p.title, desc: p.tagline }));
+
     const matchedPages = staticPages.filter(p => 
       p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
     );
 
-    return [...matchedPages, ...matchedVentures, ...matchedInsights];
+    return [...matchedPages, ...matchedPrograms, ...matchedVentures, ...matchedInsights];
   };
 
   const currentResults = results();

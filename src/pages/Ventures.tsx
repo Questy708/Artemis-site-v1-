@@ -70,62 +70,57 @@ export function Ventures() {
       </section>
 
       <section className="px-6 md:px-12 w-full max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 lg:gap-16">
-          {filteredCompanies.map((company, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+          {filteredCompanies.map((company) => (
             <Link 
               to={`/ventures/${company.id}`} 
               key={company.id} 
-              className={`group/card block flex flex-col ${idx % 3 === 0 ? 'md:col-span-2' : ''}`}
+              className="group/card block flex flex-col"
             >
               {/* TOP VISUAL */}
-              <div className={`relative ${idx % 3 === 0 ? 'aspect-[2/1] lg:aspect-[2.5/1]' : 'aspect-square md:aspect-[4/3]'} overflow-hidden mb-8 p-6 md:p-10 flex flex-col justify-between`}>
+              <div className="relative aspect-square overflow-hidden mb-8 p-10 flex flex-col justify-between">
                  <div className="absolute inset-0 bg-[#111111]">
                     <img 
                       src={companyImages[company.id] || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200"} 
                       alt={company.name}
-                      className="w-full h-full object-cover opacity-60 mix-blend-overlay group-hover/card:scale-105 group-hover/card:opacity-50 transition-all duration-1000 ease-out grayscale" 
+                      className="w-full h-full object-cover opacity-60 mix-blend-overlay" 
                     />
                  </div>
                  
-                 <div className="relative z-10 flex justify-between items-start">
-                   <div className="text-3xl md:text-4xl font-display font-medium text-white mb-4">
+                 <div className="relative z-10 flex flex-col justify-end h-full">
+                   <div className="text-4xl md:text-5xl font-display font-medium text-white mb-6">
                      {company.name}
                    </div>
-                 </div>
-
-                 <div className="relative z-10 w-full flex items-end justify-between gap-8">
-                   <p className="text-xl md:text-3xl text-white font-medium max-w-xl leading-[1.2] text-balance">
-                     <span className="font-serif italic font-normal mr-2 opacity-80">Imagine if</span>
+                   <p className="text-lg md:text-xl text-white font-medium max-w-xl leading-[1.4] text-balance italic">
+                     <span className="font-serif font-normal mr-2 opacity-90">Imagine if</span>
                      {company.mission.charAt(0).toLowerCase() + company.mission.slice(1)}
                    </p>
-                   {/* Avatar/Logo representation */}
-                   <div className="hidden lg:flex w-16 h-16 bg-[#FF4D00] items-center justify-center font-display font-bold text-2xl text-white shrink-0">
-                      {company.name.charAt(0)}
-                   </div>
+                 </div>
+
+                 {/* Accent box */}
+                 <div className="absolute bottom-10 right-10 z-10 w-12 h-12 bg-[#FF4D00] flex items-center justify-center font-display font-bold text-xl text-white">
+                    {company.name.charAt(0)}
                  </div>
               </div>
 
               {/* BOTTOM INFO */}
               <div className="w-full">
                 <dl className="mb-8 pt-4">
-                  <div className="flex flex-col sm:flex-row sm:items-baseline border-b border-[#111111]/10 py-3">
-                    <dt className="w-48 text-[11px] font-mono uppercase tracking-widest text-[#111111]/40 mb-1 sm:mb-0">Focus</dt>
-                    <dd className="flex-1 text-[15px] font-medium text-[#111111]">{company.focus}</dd>
-                  </div>
-                  <div className="flex flex-col sm:flex-row sm:items-baseline border-b border-[#111111]/10 py-3">
-                    <dt className="w-48 text-[11px] font-mono uppercase tracking-widest text-[#111111]/40 mb-1 sm:mb-0">Funding</dt>
-                    <dd className="flex-1 text-[15px] font-medium text-[#111111]">{company.funding}</dd>
-                  </div>
-                  <div className="flex flex-col sm:flex-row sm:items-baseline border-b border-[#111111]/10 py-3">
-                    <dt className="w-48 text-[11px] font-mono uppercase tracking-widest text-[#111111]/40 mb-1 sm:mb-0">Categories</dt>
-                    <dd className="flex-1 text-[15px] font-medium text-[#111111]">{company.technologies.join(' / ')}</dd>
-                  </div>
-                  <div className="flex flex-col sm:flex-row sm:items-baseline border-b border-[#111111]/10 py-3">
-                    <dt className="w-48 text-[11px] font-mono uppercase tracking-widest text-[#111111]/40 mb-1 sm:mb-0">Location</dt>
-                    <dd className="flex-1 text-[15px] font-medium text-[#111111]">{company.location}</dd>
-                  </div>
+                  {[ 
+                    {l: 'Focus', v: company.focus},
+                    {l: 'Field', v: company.field},
+                    {l: 'Funding', v: company.funding},
+                    {l: 'Team Size', v: company.teamSize},
+                    {l: 'Categories', v: company.technologies.join(' / ')},
+                    {l: 'Location', v: company.location},
+                  ].map(item => (
+                    <div key={item.l} className="flex items-baseline border-b border-[#111111]/10 py-3">
+                      <dt className="w-48 text-[11px] font-mono uppercase tracking-widest text-[#111111]/40 mb-1 sm:mb-0">{item.l}</dt>
+                      <dd className="flex-1 text-[15px] font-medium text-[#111111]">{item.v}</dd>
+                    </div>
+                  ))}
                 </dl>
-                <div className="flex items-center gap-3 text-[#FF4D00] font-bold text-[12px] uppercase tracking-[0.1em] group-hover/card:text-[#111111] transition-colors">
+                <div className="flex items-center gap-3 text-[#FF4D00] font-bold text-[12px] uppercase tracking-[0.1em] group-hover/card:underline transition-all">
                   Read the story
                   <ArrowRight className="w-4 h-4 transition-transform group-hover/card:translate-x-1" />
                 </div>

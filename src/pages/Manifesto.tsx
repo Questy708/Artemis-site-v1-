@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { ReviewSection } from "../components/ReviewSection";
 
 export function Manifesto() {
   return (
@@ -73,6 +74,7 @@ export function Manifesto() {
 
         </div>
       </section>
+      <ReviewSection />
     </div>
   );
 }

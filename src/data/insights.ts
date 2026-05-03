@@ -6,6 +6,8 @@ export interface Insight {
   author: string;
   summary: string;
   content: string[];
+  image?: string;
+  imageCover?: string;
 }
 
 export const insightsData: Insight[] = [

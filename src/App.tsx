@@ -4,7 +4,8 @@ import { Home } from "./pages/Home";
 import { Platform } from "./pages/Platform";
 import { Ventures } from "./pages/Ventures";
 import { VentureDetail } from "./pages/VentureDetail";
-import { Fellowship } from "./pages/Fellowship";
+import { Programs } from "./pages/Programs";
+import { ProgramDetail } from "./pages/ProgramDetail";
 import { RoutesPage } from "./pages/RoutesPage";
 import { Manifesto } from "./pages/Manifesto";
 import { Approach } from "./pages/Approach";
@@ -20,10 +21,11 @@ export default function App() {
           <Route path="manifesto" element={<Manifesto />} />
           <Route path="approach" element={<Approach />} />
           <Route path="platform" element={<Platform />} />
+          <Route path="programs" element={<Programs />} />
+          <Route path="programs/:id" element={<ProgramDetail />} />
           <Route path="ventures" element={<Ventures />} />
           <Route path="ventures/:id" element={<VentureDetail />} />
           <Route path="routes" element={<RoutesPage />} />
-          <Route path="fellowship" element={<Fellowship />} />
           <Route path="insights" element={<Insights />} />
           <Route path="insights/:id" element={<InsightDetail />} />
         </Route>

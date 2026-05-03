@@ -1,4 +1,5 @@
 import { Zap, Network, Building2, TestTube2, Sprout, Globe2, Activity } from "lucide-react";
+import { ReviewSection } from "../components/ReviewSection";
 
 export function Platform() {
   return (
@@ -119,6 +120,7 @@ export function Platform() {
           </div>
         </div>
       </section>
+      <ReviewSection />
     </div>
   );
 }

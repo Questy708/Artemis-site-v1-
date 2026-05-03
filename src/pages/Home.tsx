@@ -1,12 +1,14 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { MoveRight } from "lucide-react";
+import { ReviewSection } from "../components/ReviewSection";
 
 export function Home() {
   return (
     <div className="bg-[#FAFAFA] text-[#111111]">
       <Hero />
       <Intro />
+      <ReviewSection />
     </div>
   );
 }

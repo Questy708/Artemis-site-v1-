@@ -1,6 +1,6 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Search } from "lucide-react";
+import { Search, ArrowRight } from "lucide-react";
 import { SearchModal } from "./SearchModal";
 
 export function Layout() {
@@ -51,10 +51,9 @@ function Nav() {
               { name: "Manifesto", path: "/manifesto" },
               { name: "Approach", path: "/approach" },
               { name: "Infrastructure", path: "/platform" },
-              { name: "The Routes", path: "/routes" },
+              { name: "Programs", path: "/programs" },
               { name: "Ventures", path: "/ventures" },
-              { name: "Insights", path: "/insights" },
-              { name: "Fellowship", path: "/fellowship" }
+              { name: "Insights", path: "/insights" }
             ].map((item) => (
               <Link key={item.name} to={item.path} className="text-[11px] uppercase tracking-[0.1em] font-medium text-[#111111]/60 hover:text-[#FF4D00] transition-colors relative">
                 {item.name}
@@ -71,8 +70,8 @@ function Nav() {
               <Search className="w-4 h-4 text-[#111111] group-hover:text-white" />
               <span className="hidden sm:inline-flex text-[10px] font-mono font-medium text-[#111111]/40 group-hover:text-white/50">⌘K</span>
             </button>
-            <Link to="/fellowship" className="px-5 py-2.5 border border-[#111111] text-[11px] uppercase tracking-[0.1em] font-bold hover:bg-[#111111] hover:text-white transition-colors hidden sm:inline-flex">
-              Collaborate
+            <Link to="/programs" className="px-5 py-2.5 border border-[#111111] text-[11px] uppercase tracking-[0.1em] font-bold hover:bg-[#111111] hover:text-white transition-colors hidden sm:inline-flex">
+              Participate
             </Link>
           </div>
         </div>
@@ -84,39 +83,86 @@ function Nav() {
 
 function Footer() {
   return (
-    <footer className="border-t border-[#111111]/10 py-20 bg-[#111111] text-[#FAFAFA]">
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-start gap-12">
-        <div className="max-w-sm">
-          <div className="flex items-center space-x-3 mb-6">
-            <div className="w-6 h-6 bg-[#FF4D00] flex items-center justify-center">
-              <span className="text-white font-bold text-[10px]">X</span>
+    <footer className="bg-[#000000] text-white pt-24 pb-12 px-6 md:px-12">
+      <div className="w-full max-w-[1400px] mx-auto">
+        {/* CTA cards */}
+        <div className="grid md:grid-cols-2 gap-6 mb-24">
+          <Link to="/programs" className="group block">
+            <div className="border border-white/10 p-10 md:p-12 aspect-[16/9] md:aspect-auto md:h-[300px] flex flex-col justify-between hover:bg-white/5 transition-colors relative overflow-hidden">
+               <div className="flex justify-between items-start">
+                  <div className="text-[10px] font-bold tracking-widest uppercase text-white/50">Blueprint Method</div>
+                  <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                    <ArrowRight className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform" />
+                  </div>
+               </div>
+               <div>
+                  <h2 className="text-3xl md:text-5xl font-display font-medium tracking-tight mb-4">Not quite ready to raise yet?</h2>
+                  <p className="text-white/50 font-medium">Get on the path to architectural product-market fit early.</p>
+               </div>
             </div>
-            <span className="text-sm font-bold tracking-tight uppercase whitespace-nowrap">xCelero Labs</span>
+          </Link>
+          
+          <Link to="/programs" className="group block">
+            <div className="border border-white/10 p-10 md:p-12 aspect-[16/9] md:aspect-auto md:h-[300px] flex flex-col justify-between hover:bg-white/5 transition-colors relative overflow-hidden">
+               <div className="flex justify-between items-start">
+                  <div className="text-[10px] font-bold tracking-widest uppercase text-white/50">XHansa Network</div>
+                  <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                    <ArrowRight className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform" />
+                  </div>
+               </div>
+               <div>
+                  <h2 className="text-3xl md:text-5xl font-display font-medium tracking-tight mb-4">A global engine of progress.</h2>
+                  <p className="text-white/50 font-medium">Coordinate across 190 hubs with specialized hardware and talent.</p>
+               </div>
+            </div>
+          </Link>
+        </div>
+
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 mb-24">
+          <div className="lg:col-span-6">
+            <div className="text-[60px] md:text-[80px] lg:text-[100px] font-display font-medium leading-[0.9] tracking-tight uppercase mb-8">
+              xCelero<br />Labs
+            </div>
           </div>
-          <p className="text-[11px] text-[#FAFAFA]/50 font-mono uppercase tracking-[0.1em] leading-relaxed">
-            BUILDING THE WORLD'S NEXT ENGINE<br/> OF CIVILIZATION-LEVEL PROGRESS.
-          </p>
+          
+          <div className="lg:col-span-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="flex flex-col gap-4">
+              <span className="text-[10px] font-bold tracking-widest uppercase text-white/30">xCelero Labs</span>
+              <Link to="/ventures" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">Companies</Link>
+              <Link to="/how-we-work" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">How we work</Link>
+              <Link to="/approach" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">Who we back</Link>
+              <Link to="/team" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">Team</Link>
+              <a href="https://review.firstround.com" target="_blank" rel="noopener noreferrer" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">The Review</a>
+              <Link to="/news" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">News</Link>
+              <Link to="/careers" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">Careers</Link>
+            </div>
+            
+            <div className="flex flex-col gap-4">
+              <span className="text-[10px] font-bold tracking-widest uppercase text-white/30">Programs</span>
+              <Link to="/programs" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">Overview</Link>
+              <Link to="/programs" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">Fellowship</Link>
+              <Link to="/programs" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">Hansa Hubs</Link>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <span className="text-[10px] font-bold tracking-widest uppercase text-white/30">Social</span>
+              <a href="#" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">LinkedIn</a>
+              <a href="#" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">X</a>
+              <a href="#" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">YouTube</a>
+              <a href="#" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">Instagram</a>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <span className="text-[10px] font-bold tracking-widest uppercase text-white/30">Legal</span>
+              <Link to="/terms" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">Terms of Use</Link>
+              <Link to="/privacy" className="text-[13px] font-bold text-white/60 hover:text-white transition-colors">Privacy</Link>
+            </div>
+          </div>
         </div>
         
-        <div className="flex gap-16 md:gap-24">
-          <div className="flex flex-col gap-4">
-            <span className="text-[10px] uppercase font-bold tracking-widest text-[#FF4D00]">Platform</span>
-            <Link to="/manifesto" className="text-sm text-[#FAFAFA]/60 hover:text-white transition-colors">Manifesto</Link>
-            <Link to="/approach" className="text-sm text-[#FAFAFA]/60 hover:text-white transition-colors">Approach</Link>
-            <Link to="/platform" className="text-sm text-[#FAFAFA]/60 hover:text-white transition-colors">Infrastructure</Link>
-            <Link to="/insights" className="text-sm text-[#FAFAFA]/60 hover:text-white transition-colors">Insights</Link>
-          </div>
-          <div className="flex flex-col gap-4">
-             <span className="text-[10px] uppercase font-bold tracking-widest text-[#FF4D00]">Global</span>
-            <Link to="/routes" className="text-sm text-[#FAFAFA]/60 hover:text-white transition-colors">The Routes</Link>
-            <Link to="/ventures" className="text-sm text-[#FAFAFA]/60 hover:text-white transition-colors">Ventures</Link>
-          </div>
+        <div className="pt-8 border-t border-white/10 text-[10px] text-white/30 uppercase tracking-widest font-mono">
+          © {new Date().getFullYear()} xCelero Labs.
         </div>
-      </div>
-      
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 mt-20 pt-8 border-t border-[#FAFAFA]/10 flex justify-between items-center text-[10px] text-[#FAFAFA]/40 uppercase tracking-widest font-mono">
-        <div>© {new Date().getFullYear()} xCelero labs.</div>
-        <div className="hidden sm:block">A Union of Regions</div>
       </div>
     </footer>
   );
